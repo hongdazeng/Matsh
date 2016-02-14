@@ -1,10 +1,13 @@
 package com.hongdazeng;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Matsh {
 
     public static void main(String[] args) {
+
+        String history = "";
 
         Scanner reader = new Scanner(System.in);
         String userInput;
@@ -13,10 +16,21 @@ public class Matsh {
             try {
                 System.out.print("matsh: ");
                 userInput = reader.nextLine();
+                history += userInput + "\n";
 
-                if (userInput.equals("exit")) {
-                    keepAlive = false;
-                    System.exit(1);
+                switch (userInput) {
+                    case "exit":
+                        keepAlive = false;
+                        System.exit(1);
+                    case "history":
+                        System.out.print(history);
+                        break;
+                    case "dice":
+                    case "roll":
+                        Random dice = new Random();
+                        int roll = 1 + dice.nextInt(6);
+                        System.out.println("You've rolled a " + roll);
+                        continue;
                 }
 
                 String[] userCommands = userInput.split(" ");
@@ -32,7 +46,6 @@ public class Matsh {
             } catch (Exception e) {
                 System.out.println("An error has occurred, please try again");
             }
-
         }
     }
 
@@ -78,6 +91,10 @@ public class Matsh {
         } else if (operation.equals("sqrt") || operation.equals("root")) {
             double answer = Math.sqrt(someInput);
             System.out.println("The square root of " + someInput + " is " + answer);
+        } else if (operation.equalsIgnoreCase("randInt")) {
+            Random dice = new Random();
+            int answer = dice.nextInt((int) (someInput));
+            System.out.println("A random number between 0 and " + someInput + " (exclusive) is " + answer);
         }
     }
 
