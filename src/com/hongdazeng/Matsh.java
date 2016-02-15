@@ -3,33 +3,38 @@ package com.hongdazeng;
 import java.util.Random;
 import java.util.Scanner;
 
+import static java.lang.System.*;
+
 public class Matsh {
 
     public static void main(String[] args) {
 
         String history = "";
 
-        Scanner reader = new Scanner(System.in);
+        Scanner reader = new Scanner(in);
         String userInput;
         boolean keepAlive = true;
         while (keepAlive) {
             try {
-                System.out.print("matsh: ");
+                out.print("matsh: ");
                 userInput = reader.nextLine();
                 history += userInput + "\n";
 
                 switch (userInput) {
                     case "exit":
                         keepAlive = false;
-                        System.exit(1);
+                        exit(1);
                     case "history":
-                        System.out.print(history);
+                        out.print(history);
                         break;
                     case "dice":
                     case "roll":
                         Random dice = new Random();
                         int roll = 1 + dice.nextInt(6);
-                        System.out.println("You've rolled a " + roll);
+                        out.println("You've rolled a " + roll);
+                        continue;
+                    case "help":
+                        help();
                         continue;
                 }
 
@@ -44,9 +49,18 @@ public class Matsh {
                 }
 
             } catch (Exception e) {
-                System.out.println("An error has occurred, please try again");
+                out.println("An error has occurred, please try again");
             }
         }
+    }
+
+    private static void help() {
+        out.println("Welcome to help, currently supported commands");
+        out.println("do [number] [operation] [number]    : basic arithmetic ");
+        out.println("do [operation] [number]             : basic arithmetic (sqrt, randInt)");
+        out.println("dice / roll                         : roll a dice");
+        out.println("history                             : see past entries");
+        out.println("exit                                : quit");
     }
 
     private static void doTwoHandler(String[] userCommands) {
@@ -57,25 +71,25 @@ public class Matsh {
         switch (operation) {
             case "+": {
                 double answer = inputOne + inputTwo;
-                System.out.println(inputOne + " + " + inputTwo + " = " + answer);
+                out.println(inputOne + " + " + inputTwo + " = " + answer);
                 break;
             }
             case "-": {
                 double answer = inputOne - inputTwo;
-                System.out.println(inputOne + " - " + inputTwo + " = " + answer);
+                out.println(inputOne + " - " + inputTwo + " = " + answer);
                 break;
             }
             case "*": {
                 double answer = inputOne + inputTwo;
-                System.out.println(inputOne + " * " + inputTwo + " = " + answer);
+                out.println(inputOne + " * " + inputTwo + " = " + answer);
                 break;
             }
             case "/":
                 if (inputTwo == 0.0) {
-                    System.out.println("Please try not to divide by zero");
+                    out.println("Please try not to divide by zero");
                 } else {
                     double answer = inputOne / inputTwo;
-                    System.out.println(inputOne + " / " + inputTwo + " = " + answer);
+                    out.println(inputOne + " / " + inputTwo + " = " + answer);
                 }
                 break;
         }
@@ -87,14 +101,14 @@ public class Matsh {
 
         if (operation.equals("square")) {
             double answer = someInput * someInput;
-            System.out.println(someInput + " squared is " + answer);
+            out.println(someInput + " squared is " + answer);
         } else if (operation.equals("sqrt") || operation.equals("root")) {
             double answer = Math.sqrt(someInput);
-            System.out.println("The square root of " + someInput + " is " + answer);
+            out.println("The square root of " + someInput + " is " + answer);
         } else if (operation.equalsIgnoreCase("randInt")) {
             Random dice = new Random();
             int answer = dice.nextInt((int) (someInput));
-            System.out.println("A random number between 0 and " + someInput + " (exclusive) is " + answer);
+            out.println("A random number between 0 and " + someInput + " (exclusive) is " + answer);
         }
     }
 
