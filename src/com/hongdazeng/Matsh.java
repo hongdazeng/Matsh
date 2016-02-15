@@ -48,7 +48,7 @@ public class Matsh {
                     }
                 }
 
-            } catch (Exception e) {
+            } catch (ArithmeticException e) {
                 out.println("An error has occurred, please try again");
             }
         }
@@ -109,6 +109,9 @@ public class Matsh {
             Random dice = new Random();
             int answer = dice.nextInt((int) (someInput));
             out.println("A random number between 0 and " + someInput + " (exclusive) is " + answer);
+        } else if (operation.equals("factorial")) {
+            FactorialTable newFacTable = new FactorialTable();
+            System.out.println("" + (int)(someInput) + " factorial is " + newFacTable.getNum((int)someInput));
         }
     }
 
