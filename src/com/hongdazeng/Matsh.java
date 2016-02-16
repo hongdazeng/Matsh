@@ -92,6 +92,14 @@ public class Matsh {
                     out.println(inputOne + " / " + inputTwo + " = " + answer);
                 }
                 break;
+            case "^":
+                double answer = Math.pow(inputOne, inputTwo);
+                if (answer == Double.POSITIVE_INFINITY) {
+                    out.println("Please try again with smaller numbers");
+                } else {
+                    out.println(inputOne + " ^ " + inputTwo + " = " + answer);
+                }
+
         }
     }
 
@@ -111,7 +119,10 @@ public class Matsh {
             out.println("A random number between 0 and " + someInput + " (exclusive) is " + answer);
         } else if (operation.equals("factorial")) {
             FactorialTable newFacTable = new FactorialTable();
-            System.out.println("" + (int)(someInput) + " factorial is " + newFacTable.getNum((int)someInput));
+            System.out.println("" + (int) (someInput) + " factorial is " + newFacTable.getNum((int) someInput));
+        } else if (operation.equals("circleArea")) {
+            double answer = Math.PI * someInput * someInput;
+            out.println("A circle with a radius of " + someInput + " will have an area of " + answer);
         }
     }
 
