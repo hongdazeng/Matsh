@@ -14,11 +14,13 @@ public class Matsh {
         Scanner reader = new Scanner(in);
         String userInput;
         boolean keepAlive = true;
+        int lineNumber = 1;
         while (keepAlive) {
             try {
                 out.print("matsh: ");
                 userInput = reader.nextLine();
-                history += userInput + "\n";
+                history += "" + lineNumber + " : " + userInput + "\n";
+                lineNumber++;
 
                 switch (userInput) {
                     case "exit":
@@ -48,7 +50,7 @@ public class Matsh {
                     }
                 }
 
-            } catch (ArithmeticException e) {
+            } catch (Exception e) {
                 out.println("An error has occurred, please try again");
             }
         }
@@ -57,7 +59,9 @@ public class Matsh {
     private static void help() {
         out.println("Welcome to help, currently supported commands");
         out.println("do [number] [operation] [number]    : basic arithmetic ");
+        out.println("   [operation] supported : + - * / ^");
         out.println("do [operation] [number]             : basic arithmetic (sqrt, randInt)");
+        out.println("   [operation] supported : square sqrt randInt factorial (up to 100) circleArea");
         out.println("dice / roll                         : roll a dice");
         out.println("history                             : see past entries");
         out.println("exit                                : quit");
